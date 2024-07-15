@@ -1,4 +1,4 @@
-- hosts: pve1.home.domain.de
+- hosts: pve1
   vars:
   ansible_python_interpreter: /usr/bin/python3
   gather_facts: no
