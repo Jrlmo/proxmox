@@ -5,15 +5,15 @@
   #become_method: sudo
   tasks:
     # Get distrib version for good repo
-    #- name: Distribution
-    #  debug: msg="{{ ansible_distribution }}"
+    - name: Distribution
+      debug: msg="{{ ansible_distribution }}"
     #- name: Distribution version
     #  debug: msg="{{ ansible_distribution_version}}"
     - name: Distribution major version
       debug: msg="{{ ansible_distribution_major_version }}"
-    #- name: Show facts available on the system
-    #  ansible.builtin.debug:
-    #    var: ansible_facts
+    - name: Show facts available on the system
+      ansible.builtin.debug:
+        var: ansible_facts
 
     # Ubuntu 24
     - name: Install last deb for update repo
@@ -53,7 +53,7 @@
         deb: https://repo.zabbix.com/zabbix/7.0/debian/pool/main/z/zabbix-release/zabbix-release_7.0-2+debian12_all.deb
         allow_downgrade: yes
       when: 
-        - ansible_facts['distribution_major_version'] == "18"
+        - ansible_facts['distribution_major_version'] == "12"
 
     # Debian 11
     - name: Install last deb for update repo
@@ -61,7 +61,7 @@
         deb: https://repo.zabbix.com/zabbix/7.0/debian/pool/main/z/zabbix-release/zabbix-release_7.0-2+debian11_all.deb
         allow_downgrade: yes
       when: 
-        - ansible_facts['distribution_major_version'] == "18"
+        - ansible_facts['distribution_major_version'] == "11"
 
     # Debian 10
     - name: Install last deb for update repo
@@ -69,7 +69,7 @@
         deb: https://repo.zabbix.com/zabbix/7.0/debian/pool/main/z/zabbix-release/zabbix-release_7.0-2+debian10_all.deb
         allow_downgrade: yes
       when: 
-        - ansible_facts['distribution_major_version'] == "18"
+        - ansible_facts['distribution_major_version'] == "10"
 
     # Check if Zabbix is present
     - name: Check if Zabbix is present
